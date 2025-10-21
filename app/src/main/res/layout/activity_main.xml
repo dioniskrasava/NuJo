@@ -9,6 +9,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Поле для имени пользователя -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Имя пользователя">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Поле для ввода роста -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -55,6 +68,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Сохранить профиль" />
+
+        <!-- Кнопка для перехода к списку пользователей -->
+        <Button
+            android:id="@+id/userListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Список пользователей" />
 
     </LinearLayout>
 </ScrollView>

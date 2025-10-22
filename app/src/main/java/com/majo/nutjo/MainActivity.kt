@@ -1,7 +1,7 @@
 package com.majo.nutjo
 
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.Intent // "намерение"
+import android.content.SharedPreferences // "общие настройки приложения"
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 class MainActivity : AppCompatActivity() {
 
     private lateinit var nameEditText: TextInputEditText
+    // lateinit - означает, что мы обещаем компилятору, что обязательно проинициализируем значение переменной позже
     private lateinit var heightEditText: TextInputEditText
     private lateinit var weightEditText: TextInputEditText
     private lateinit var ageEditText: TextInputEditText
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val prefsName = "NutritionAppPrefs"
     private val keyUsers = "key_users"
 
+    // при создании приложения
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
+    //инициализация вьюх (объектов приложения)
     private fun initViews() {
         nameEditText = findViewById(R.id.nameEditText)
         heightEditText = findViewById(R.id.heightEditText)
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         userListButton = findViewById(R.id.userListButton)
     }
 
+    // установка событий при нажатии кнопок
     private fun setupClickListeners() {
         saveButton.setOnClickListener {
             saveUser()
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // сохранение пользователя
     private fun saveUser() {
         val name = nameEditText.text.toString().trim()
         val heightText = heightEditText.text.toString().trim()
@@ -99,6 +104,7 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    //очистка полей регистрации польз
     private fun clearFields() {
         nameEditText.text?.clear()
         heightEditText.text?.clear()

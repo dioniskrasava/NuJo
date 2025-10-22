@@ -1,6 +1,7 @@
 package com.majo.nutjo
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -35,6 +37,7 @@ class UserListActivity : AppCompatActivity() {
         setupListView()
     }
 
+    // инициал. объектов приложения
     private fun initViews() {
         usersListView = findViewById(R.id.usersListView)
         backButton = findViewById(R.id.backButton)
@@ -47,7 +50,7 @@ class UserListActivity : AppCompatActivity() {
 
         usersListView.setOnItemClickListener { parent, view, position, id ->
             val user = usersList[position]
-            Toast.makeText(this, "Выбран: ${user.name}", Toast.LENGTH_SHORT).show()
+            showUserActionsDialog(user, position)
         }
 
         usersListView.setOnItemLongClickListener { parent, view, position, id ->
@@ -56,6 +59,78 @@ class UserListActivity : AppCompatActivity() {
             true // Возвращаем true, чтобы показать, что событие обработано
         }
     }
+
+
+    private fun showUserActionsDialog(user: User, position: Int) {
+        val options = arrayOf("Выбрать пользователя", "Редактировать", "Удалить")
+
+        AlertDialog.Builder(this)
+            .setTitle("Действия с пользователем: ${user.name}")
+            .setItems(options) { dialog, which ->
+                when (which) {
+                    0 -> selectUser(user) // Выбрать
+                    1 -> editUser(user, position) // Редактировать
+                    2 -> showDeleteConfirmationDialog(user, position) // Удалить
+                }
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
+
+    private fun selectUser(user: User) {
+        val prefs = getSharedPreferences("NutritionAppPrefs", MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // Сохраняем ID выбранного пользователя (можно использовать имя как идентификатор)
+        editor.putString("selected_user_name", user.name)
+        editor.putInt("selected_user_id", usersList.indexOfFirst { it.name == user.name })
+        editor.apply()
+
+        Toast.makeText(this, "Пользователь ${user.name} выбран", Toast.LENGTH_SHORT).show()
+
+        // Переходим к экрану продуктов
+        val intent = Intent(this, ProductActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun editUser(user: User, position: Int) {
+        // Создаем диалог для редактирования
+        val dialogView = layoutInflater.inflate(R.layout.dialog_edit_user, null)
+        val nameEditText = dialogView.findViewById<TextInputEditText>(R.id.editNameEditText)
+        val heightEditText = dialogView.findViewById<TextInputEditText>(R.id.editHeightEditText)
+        val weightEditText = dialogView.findViewById<TextInputEditText>(R.id.editWeightEditText)
+        val ageEditText = dialogView.findViewById<TextInputEditText>(R.id.editAgeEditText)
+
+        // Заполняем текущими значениями
+        nameEditText.setText(user.name)
+        heightEditText.setText(user.height.toString())
+        weightEditText.setText(user.weight.toString())
+        ageEditText.setText(user.age.toString())
+
+        AlertDialog.Builder(this)
+            .setTitle("Редактировать пользователя")
+            .setView(dialogView)
+            .setPositiveButton("Сохранить") { dialog, which ->
+                val newName = nameEditText.text.toString().trim()
+                val newHeight = heightEditText.text.toString().toIntOrNull() ?: user.height
+                val newWeight = weightEditText.text.toString().toFloatOrNull() ?: user.weight
+                val newAge = ageEditText.text.toString().toIntOrNull() ?: user.age
+
+                if (newName.isNotEmpty()) {
+                    val updatedUser = User(newName, newHeight, newWeight, newAge)
+                    usersList[position] = updatedUser
+                    saveUsersToSharedPreferences()
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(this, "Пользователь обновлен", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
+
 
     private fun loadUsers() {
         val prefs: SharedPreferences = getSharedPreferences(prefsName, MODE_PRIVATE)

@@ -4,32 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FAFAFA">
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:baselineAligned="false">
 
         <!-- Заголовок -->
         <TextView
             android:id="@+id/welcomeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добро пожаловать!"
+            android:text="@string/welcome"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/dateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Сегодня"
+            android:text="@string/today"
             android:textSize="16sp"
             android:gravity="center"
-            android:textColor="#666"
+            android:textColor="?android:attr/textColorSecondary"
             android:layout_marginBottom="32dp" />
 
         <!-- Карточка быстрого доступа -->
@@ -49,15 +51,17 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Быстрые действия"
+                    android:text="@string/quick_actions"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginBottom="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <!-- Добавить продукт -->
                     <LinearLayout
@@ -68,7 +72,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="12dp"
-                        android:background="?selectableItemBackground"
+                        android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -76,13 +80,15 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@android:drawable/ic_input_add"
-                            android:tint="#2196F3" />
+                            app:tint="#2196F3"
+                            android:contentDescription="@string/add_product_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Продукт"
+                            android:text="@string/product"
                             android:textSize="14sp"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:layout_marginTop="8dp" />
 
                     </LinearLayout>
@@ -96,7 +102,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="12dp"
-                        android:background="?selectableItemBackground"
+                        android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -104,13 +110,15 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@android:drawable/ic_menu_edit"
-                            android:tint="#4CAF50" />
+                            app:tint="#4CAF50"
+                            android:contentDescription="@string/add_meal_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Прием пищи"
+                            android:text="@string/meal"
                             android:textSize="14sp"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:layout_marginTop="8dp" />
 
                     </LinearLayout>
@@ -124,7 +132,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="12dp"
-                        android:background="?selectableItemBackground"
+                        android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -132,13 +140,15 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@android:drawable/ic_menu_agenda"
-                            android:tint="#FF9800" />
+                            app:tint="#FF9800"
+                            android:contentDescription="@string/add_dish_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Блюдо"
+                            android:text="@string/dish"
                             android:textSize="14sp"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:layout_marginTop="8dp" />
 
                     </LinearLayout>
@@ -166,9 +176,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Списки и отчеты"
+                    android:text="@string/lists_and_reports"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginBottom="16dp" />
 
                 <!-- Список продуктов -->
@@ -178,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
-                    android:background="?selectableItemBackground"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_marginBottom="8dp">
@@ -187,15 +198,17 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_search"
-                        android:tint="#2196F3"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="#2196F3"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/search_icon" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Список продуктов"
+                        android:text="@string/products_list"
                         android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:layout_marginStart="16dp"
                         android:layout_gravity="center_vertical" />
 
@@ -203,8 +216,9 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@android:drawable/ic_media_next"
-                        android:tint="#999"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="?android:attr/textColorTertiary"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/next_icon" />
 
                 </LinearLayout>
 
@@ -215,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
-                    android:background="?selectableItemBackground"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_marginBottom="8dp">
@@ -224,15 +238,17 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_today"
-                        android:tint="#4CAF50"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="#4CAF50"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/calendar_icon" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Приемы пищи"
+                        android:text="@string/meals_list"
                         android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:layout_marginStart="16dp"
                         android:layout_gravity="center_vertical" />
 
@@ -240,8 +256,9 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@android:drawable/ic_media_next"
-                        android:tint="#999"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="?android:attr/textColorTertiary"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/next_icon" />
 
                 </LinearLayout>
 
@@ -252,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
-                    android:background="?selectableItemBackground"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true">
 
@@ -260,15 +277,17 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_info_details"
-                        android:tint="#FF9800"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="#FF9800"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/info_icon" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Итоги за день"
+                        android:text="@string/daily_summary"
                         android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:layout_marginStart="16dp"
                         android:layout_gravity="center_vertical" />
 
@@ -276,8 +295,9 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@android:drawable/ic_media_next"
-                        android:tint="#999"
-                        android:layout_gravity="center_vertical" />
+                        app:tint="?android:attr/textColorTertiary"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/next_icon" />
 
                 </LinearLayout>
 
@@ -288,13 +308,11 @@
         <!-- Кнопка смены пользователя в самом низу -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/switchUserButton"
-            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Сменить пользователя"
+            android:text="@string/switch_user"
             android:layout_marginTop="16dp"
-            app:strokeColor="#666"
-            app:strokeWidth="1dp" />
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     </LinearLayout>
 

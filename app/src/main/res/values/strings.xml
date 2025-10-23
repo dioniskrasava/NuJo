@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">NuJo</string>
+
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="today">Сегодня</string>
+    <string name="quick_actions">Быстрые действия</string>
+    <string name="product">Продукт</string>
+    <string name="meal">Прием пищи</string>
+    <string name="dish">Блюдо</string>
+    <string name="lists_and_reports">Списки и отчеты</string>
+    <string name="products_list">Список продуктов</string>
+    <string name="meals_list">Приемы пищи</string>
+    <string name="daily_summary">Итоги за день</string>
+    <string name="switch_user">Сменить пользователя</string>
+
+    <!-- Content descriptions -->
+    <string name="add_product_icon">Добавить продукт</string>
+    <string name="add_meal_icon">Добавить прием пищи</string>
+    <string name="add_dish_icon">Добавить блюдо</string>
+    <string name="search_icon">Поиск</string>
+    <string name="calendar_icon">Календарь</string>
+    <string name="info_icon">Информация</string>
+    <string name="next_icon">Далее</string>
 </resources>

@@ -45,7 +45,14 @@ class UserListActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         backButton.setOnClickListener {
-            finish() // Закрываем эту Activity и возвращаемся к предыдущей
+            // Вместо finish() создаем явный Intent к MainActivity
+            val intent = Intent(this, MainActivity::class.java)
+
+            // Очищаем стек навигации, чтобы нельзя было вернуться назад к UserListActivity
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+
+            startActivity(intent)
+            finish() // Закрываем текущую Activity
         }
 
         usersListView.setOnItemClickListener { parent, view, position, id ->

@@ -1,6 +1,5 @@
 package com.majo.nutjo
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.view.View
@@ -45,8 +44,8 @@ class UserListActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         backButton.setOnClickListener {
-            // Вместо finish() создаем явный Intent к MainActivity
-            val intent = Intent(this, MainActivity::class.java)
+            // Вместо finish() создаем явный Intent к UserRegistrationActivity
+            val intent = Intent(this, UserRegistrationActivity::class.java)
 
             // Очищаем стек навигации, чтобы нельзя было вернуться назад к UserListActivity
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

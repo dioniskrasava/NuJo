@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         val intent = when {
             users.isEmpty() -> {
                 // Нет пользователей - идем к регистрации
-                Intent(this, MainActivity::class.java)
+                Intent(this, UserRegistrationActivity::class.java)
             }
             selectedUserId == -1 -> {
                 // Есть пользователи, но никто не выбран - идем к выбору

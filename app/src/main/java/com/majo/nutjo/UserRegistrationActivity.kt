@@ -10,7 +10,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class MainActivity : AppCompatActivity() {
+class UserRegistrationActivity : AppCompatActivity() {
 
     private lateinit var nameEditText: TextInputEditText
     // lateinit - означает, что мы обещаем компилятору, что обязательно проинициализируем значение переменной позже
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     // при создании приложения
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user_registration)
 
         initViews()
         setupClickListeners()

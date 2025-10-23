@@ -20,7 +20,7 @@
             android:parentActivityName=".UserRegistrationActivity"/>
         <activity
             android:name=".UserRegistrationActivity"
-            android:exported="true"></activity>
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

@@ -89,16 +89,17 @@ class UserListActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("NutritionAppPrefs", MODE_PRIVATE)
         val editor = prefs.edit()
 
-        // Сохраняем ID выбранного пользователя (можно использовать имя как идентификатор)
         editor.putString("selected_user_name", user.name)
         editor.putInt("selected_user_id", usersList.indexOfFirst { it.name == user.name })
         editor.apply()
 
         Toast.makeText(this, "Пользователь ${user.name} выбран", Toast.LENGTH_SHORT).show()
 
-        // Переходим к экрану продуктов
-        val intent = Intent(this, ProductActivity::class.java)
+        // Переходим к ГЛАВНОМУ ЭКРАНУ приложения
+        val intent = Intent(this, MainAppActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+        finish()
     }
 
 

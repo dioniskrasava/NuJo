@@ -6,18 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/*Главная активность. Проверяющая факт уже имеющихся пользователей*/
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Проверяем, есть ли сохраненные пользователи
         val prefs = getSharedPreferences("NutritionAppPrefs", MODE_PRIVATE)
         val usersJson = prefs.getString("key_users", "[]")
         val gson = Gson()
         val type = object : TypeToken<List<User>>() {}.type
         val users = gson.fromJson<List<User>>(usersJson, type) ?: emptyList()
 
-        // Проверяем, есть ли выбранный пользователь
         val selectedUserId = prefs.getInt("selected_user_id", -1)
 
         val intent = when {
@@ -30,12 +29,12 @@ class SplashActivity : AppCompatActivity() {
                 Intent(this, UserListActivity::class.java)
             }
             else -> {
-                // Есть выбранный пользователь - идем к продуктам
-                Intent(this, ProductActivity::class.java)
+                // Есть выбранный пользователь - идем к ГЛАВНОМУ ЭКРАНУ
+                Intent(this, MainAppActivity::class.java)
             }
         }
 
         startActivity(intent)
-        finish() // Закрываем SplashActivity чтобы нельзя было вернуться назад
+        finish()
     }
 }

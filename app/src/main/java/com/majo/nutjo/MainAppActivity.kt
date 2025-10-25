@@ -4,16 +4,18 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.android.material.appbar.MaterialToolbar
 
 class MainAppActivity : AppCompatActivity() {
 
     private lateinit var welcomeTextView: TextView
     private lateinit var dateTextView: TextView
-    private lateinit var switchUserButton: com.google.android.material.button.MaterialButton
 
     private val prefsName = "NutritionAppPrefs"
 
@@ -21,8 +23,11 @@ class MainAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_app)
 
+        // Устанавливаем Toolbar
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         initViews()
-        setupClickListeners()
         updateWelcomeText()
         updateDate()
     }
@@ -30,28 +35,57 @@ class MainAppActivity : AppCompatActivity() {
     private fun initViews() {
         welcomeTextView = findViewById(R.id.welcomeTextView)
         dateTextView = findViewById(R.id.dateTextView)
-        switchUserButton = findViewById(R.id.switchUserButton)
 
-        // Находим все карточки
+        // Оставляем только основные карточки, остальное убираем
         val addProductCard = findViewById<android.view.View>(R.id.addProductCard)
         val addMealCard = findViewById<android.view.View>(R.id.addMealCard)
-        val addDishCard = findViewById<android.view.View>(R.id.addDishCard)
-        val productsListCard = findViewById<android.view.View>(R.id.productsListCard)
-        val mealsListCard = findViewById<android.view.View>(R.id.mealsListCard)
         val nutritionSummaryCard = findViewById<android.view.View>(R.id.nutritionSummaryCard)
 
-        // Устанавливаем обработчики для карточек
-        addProductCard.setOnClickListener { showToast("Добавление продукта - в разработке") }
-        addMealCard.setOnClickListener { showToast("Добавление приема пищи - в разработке") }
-        addDishCard.setOnClickListener { showToast("Создание блюда - в разработке") }
-        productsListCard.setOnClickListener { showToast("Список продуктов - в разработке") }
-        mealsListCard.setOnClickListener { showToast("Список приемов пищи - в разработке") }
-        nutritionSummaryCard.setOnClickListener { showToast("Итоги за день - в разработке") }
+        addProductCard.setOnClickListener {
+            showToast("Добавление продукта - в разработке")
+        }
+        addMealCard.setOnClickListener {
+            showToast("Добавление приема пищи - в разработке")
+        }
+        nutritionSummaryCard.setOnClickListener {
+            showToast("Итоги за день - в разработке")
+        }
     }
 
-    private fun setupClickListeners() {
-        switchUserButton.setOnClickListener {
-            switchUser()
+    // 1. Создаем меню (три точки)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    // 2. Обрабатываем нажатия в меню
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_switch_user -> {
+                switchUser()
+                true
+            }
+            R.id.action_products_list -> {
+                showToast("Список продуктов - в разработке")
+                true
+            }
+            R.id.action_meals_list -> {
+                showToast("Список приемов пищи - в разработке")
+                true
+            }
+            R.id.action_create_dish -> {
+                showToast("Создание блюда - в разработке")
+                true
+            }
+            R.id.action_nutrition_summary -> {
+                showToast("Итоги за день - в разработке")
+                true
+            }
+            R.id.action_settings -> {
+                showToast("Настройки - в разработке")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
